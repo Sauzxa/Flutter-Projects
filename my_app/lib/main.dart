@@ -15,21 +15,38 @@ class MyApp extends StatelessWidget {
               backgroundColor: Colors.blue,
             ),
             body: Container(
-                padding: EdgeInsets.all(10),
+                padding: const EdgeInsets.all(10),
                 child: Column(
                   children: [
                     Container(
                       width: 1000,
-                      padding: EdgeInsets.all(10),
+                      padding: const EdgeInsets.all(10),
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
-                          color: Color(0xffe6f0fa),
+                          color: const Color(0xffe6f0fa),
                           border: Border.all(color: Colors.black)),
                       child: const Text(
                         "Strawberry Pavlova",
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             fontWeight: FontWeight.w600,
+                            color: Colors.black,
+                            fontSize: 18),
+                      ),
+                    ),
+                    Container(
+                      width: 1000,
+                      padding: const EdgeInsets.all(10),
+                      alignment: Alignment.center,
+                      margin: const EdgeInsets.only(top: 10),
+                      decoration: BoxDecoration(
+                          color: const Color(0xffe6f0fa),
+                          border: Border.all(color: Colors.black)),
+                      child: const Text(
+                        "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo saepe tempore consectetur dicta magnam possimus voluptatibus animi  ",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontWeight: FontWeight.w400,
                             color: Colors.black,
                             fontSize: 18),
                       ),
