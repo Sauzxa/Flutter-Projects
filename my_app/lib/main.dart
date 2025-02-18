@@ -35,10 +35,10 @@ class MyApp extends StatelessWidget {
                       ),
                     ),
                     Container(
+                      margin: const EdgeInsets.only(top: 10),
                       width: 1000,
                       padding: const EdgeInsets.all(10),
                       alignment: Alignment.center,
-                      margin: const EdgeInsets.only(top: 10),
                       decoration: BoxDecoration(
                           color: const Color(0xffe6f0fa),
                           border: Border.all(color: Colors.black)),
@@ -50,7 +50,31 @@ class MyApp extends StatelessWidget {
                             color: Colors.black,
                             fontSize: 18),
                       ),
-                    )
+                    ),
+                    Container(
+                        width: 1000,
+                        margin: EdgeInsets.only(top: 10),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 40, vertical: 10),
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                            color: const Color(0xffe6f0fa),
+                            border: Border.all(color: Colors.black)),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Row(
+                              children: [
+                                Icon(Icons.star, size: 17),
+                                Icon(Icons.star, size: 17),
+                                Icon(Icons.star, size: 17),
+                                Icon(Icons.star, size: 17),
+                                Icon(Icons.star, size: 17),
+                              ],
+                            ),
+                            Text("170 Reviews")
+                          ],
+                        ))
                   ],
                 ))));
   }
