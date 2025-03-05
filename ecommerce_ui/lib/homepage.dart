@@ -1,3 +1,4 @@
+import 'package:ecommerce_ui/details.dart';
 import 'package:flutter/material.dart';
 
 class Homepage extends StatefulWidget {
@@ -16,15 +17,62 @@ class _HomepageState extends State<Homepage> {
     {'imagepath': 'images/shoes.jpg', 'categoriename': 'Men'},
     {'imagepath': 'images/shoeswomen.jpg', 'categoriename': 'Women'}
   ];
+  List itemDetails = [
+    {
+      "imagepath": "images/headphones.jpg",
+      "title": "Logitech G 231",
+      "subtitle": "Bluethooth Headphone",
+      "price": "359\$"
+    },
+    {
+      "imagepath": "images/m4.jpg",
+      "title": "BMW M4",
+      "subtitle": "BMW M4 competition",
+      "price": "123k\$"
+    },
+    {
+      "imagepath": "images/headphones.jpg",
+      "title": "Logitech G 231",
+      "subtitle": "Bluethooth Headphone",
+      "price": "359\$"
+    },
+    {
+      "imagepath": "images/horse.jpg",
+      "title": "حصان",
+      "subtitle": "bon etat ta3 Tyabo",
+      "price": "999k\$"
+    },
+  ];
+  GlobalKey<ScaffoldState> scaffoledKey = GlobalKey();
+  int selectedindex = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: BottomNavigationBar(
+        iconSize: 40,
+        currentIndex: selectedindex,
+        selectedItemColor: Colors.orange,
+        onTap: (val) => {
+          setState(() {
+            selectedindex = val;
+          })
+        },
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home_outlined),
+            label: "home",
+          ),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.shopping_cart), label: "shop"),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.person_2_outlined), label: "account"),
+        ],
+      ),
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: ListView(
           children: [
-            // 🔍 Search Bar + Menu Icon
             Row(
               children: [
                 Expanded(
@@ -109,53 +157,60 @@ class _HomepageState extends State<Homepage> {
                 mainAxisSpacing: 10,
                 mainAxisExtent: 250, // ✅ Correction ici
               ),
-              itemCount: 6, // Supposons que tu as 6 produits
+              itemCount: itemDetails.length, // Supposons que tu as 6 produits
               itemBuilder: (context, index) {
-                return Card(
-                  elevation: 0,
-                  child: Column(
-                    children: [
-                      Container(
-                        margin: EdgeInsets.only(bottom: 10),
-                        width: double.infinity,
-                        height: 160, // ✅ Correction ici
-                        decoration: BoxDecoration(
-                          color: Colors.grey[200],
-                          borderRadius: BorderRadius.circular(10),
+                return InkWell(
+                  onTap: () => {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) =>
+                            Details(data: itemDetails[index])))
+                  },
+                  child: Card(
+                    elevation: 0,
+                    child: Column(
+                      children: [
+                        Container(
+                          margin: EdgeInsets.only(bottom: 10),
+                          width: double.infinity,
+                          height: 160, // ✅ Correction ici
+                          decoration: BoxDecoration(
+                            color: Colors.grey[200],
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: Image.asset(
+                            itemDetails[index]["imagepath"],
+                            fit: BoxFit.cover,
+                          ),
                         ),
-                        child: Image.asset(
-                          "images/headphones.jpg",
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "Logitech G 231",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 15),
-                            ),
-                            Text(
-                              "Bluetooth Headphone",
-                              style: TextStyle(
-                                  fontSize: 10, color: Colors.grey[600]),
-                            ),
-                            SizedBox(height: 5),
-                            Text(
-                              "\$359",
-                              style: TextStyle(
-                                color: Colors.orange,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 15,
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                itemDetails[index]["title"],
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 15),
                               ),
-                            ),
-                          ],
+                              Text(
+                                itemDetails[index]["subtitle"],
+                                style: TextStyle(
+                                    fontSize: 10, color: Colors.grey[600]),
+                              ),
+                              SizedBox(height: 5),
+                              Text(
+                                itemDetails[index]["price"],
+                                style: TextStyle(
+                                  color: Colors.orange,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 15,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 );
               },
