@@ -1,4 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:project1/components/customeButton.dart';
+import 'package:project1/components/customelogo.dart';
+import 'package:project1/components/textformfiled.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -8,6 +13,8 @@ class Login extends StatefulWidget {
 }
 
 class _Login extends State<Login> {
+  TextEditingController emailLogin = TextEditingController();
+  TextEditingController passwrod = TextEditingController();
   bool _obsecureText = true;
   @override
   Widget build(BuildContext context) {
@@ -20,23 +27,7 @@ class _Login extends State<Login> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(height: 50),
-                Center(
-                  child: Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(70),
-                          color: Colors.blue[300]),
-                      margin: EdgeInsets.only(top: 50),
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 12, vertical: 12),
-                      width: 80,
-                      height: 80,
-                      alignment: Alignment.center,
-                      child: Image.asset(
-                        "images/notelogo.jpg",
-                        fit: BoxFit.cover,
-                        height: 40,
-                      )),
-                ),
+                Customelogo(),
                 Container(height: 60),
                 Text(
                   "Login",
@@ -58,25 +49,9 @@ class _Login extends State<Login> {
                   style: TextStyle(fontSize: 20, color: Colors.lightBlue),
                 ),
                 Container(height: 10),
-                TextFormField(
-                  keyboardType: TextInputType.emailAddress,
-                  decoration: InputDecoration(
-                      hintText: "Enter your Email",
-                      suffixIcon: Padding(
-                        padding: EdgeInsets.only(right: 10),
-                        child: Icon(Icons.email),
-                      ),
-                      hintStyle: TextStyle(fontSize: 14, color: Colors.grey),
-                      filled: true,
-                      fillColor: Colors.blue[50],
-                      border: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.black),
-                          borderRadius: BorderRadius.circular(50)),
-                      enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.black),
-                          borderRadius: BorderRadius.circular(50)),
-                      contentPadding:
-                          EdgeInsets.symmetric(vertical: 2, horizontal: 20)),
+                CustomTextFormField(
+                  hintText: "Enter You Email",
+                  myController: emailLogin,
                 ),
                 Container(height: 20),
                 Text(
@@ -84,6 +59,7 @@ class _Login extends State<Login> {
                   style: TextStyle(fontSize: 20, color: Colors.lightBlue),
                 ),
                 TextFormField(
+                  controller: passwrod,
                   keyboardType: TextInputType.visiblePassword,
                   obscureText: _obsecureText,
                   decoration: InputDecoration(
@@ -113,29 +89,22 @@ class _Login extends State<Login> {
                       contentPadding:
                           EdgeInsets.symmetric(vertical: 2, horizontal: 20)),
                 ),
-                Container(
-                  margin: EdgeInsets.only(top: 10, bottom: 10),
-                  alignment: Alignment.centerRight,
-                  child: Text(
-                    "Forget you Password ?",
-                    style: TextStyle(color: Colors.lightBlue, fontSize: 15),
+                InkWell(
+                  onTap: () {},
+                  child: Container(
+                    margin: EdgeInsets.only(top: 10, bottom: 10),
+                    alignment: Alignment.centerRight,
+                    child: Text(
+                      "Forget you Password ?",
+                      style: TextStyle(color: Colors.lightBlue, fontSize: 15),
+                    ),
                   ),
                 ),
               ],
             ),
-            MaterialButton(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(50)),
-              padding: EdgeInsets.symmetric(horizontal: 40, vertical: 20),
-              child: Text(
-                "Login",
-                style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 15),
-              ),
-              color: Colors.blue,
-              onPressed: () {},
+            Customebutton(
+              title: "Login",
+              onPressed: () => {},
             ),
             Container(
               height: 20,
@@ -218,11 +187,16 @@ class _Login extends State<Login> {
                   "Dont Have An Account ? ",
                   style: TextStyle(fontSize: 15, color: Colors.grey),
                 )),
-                Center(
-                    child: Text(
-                  "Registre",
-                  style: TextStyle(fontSize: 15, color: Colors.lightBlue),
-                )),
+                InkWell(
+                  onTap: () {
+                    Navigator.of(context).pushNamed("signup");
+                  },
+                  child: Center(
+                      child: Text(
+                    "Registre",
+                    style: TextStyle(fontSize: 15, color: Colors.lightBlue),
+                  )),
+                ),
               ],
             )
           ],

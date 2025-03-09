@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:project1/auth/login.dart';
+import 'package:project1/auth/signup.dart';
 import 'package:project1/firebase_options.dart';
 
 void main() async {
@@ -16,8 +17,13 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(home: Login(), debugShowCheckedModeBanner: false
+    return MaterialApp(
+        home: Login(),
+        debugShowCheckedModeBanner: false,
         // This trailing comma makes auto-formatting nicer for build methods.
-        );
+        routes: {
+          "signup": (context) => Signup(),
+          "login": (context) => Login(),
+        });
   }
 }
