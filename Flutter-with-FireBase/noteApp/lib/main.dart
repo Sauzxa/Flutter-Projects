@@ -38,7 +38,10 @@ class _MyApp extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        home: FirebaseAuth.instance.currentUser == null ? Login() : Homepage(),
+        home: (FirebaseAuth.instance.currentUser != null &&
+                FirebaseAuth.instance.currentUser!.emailVerified)
+            ? Homepage()
+            : Login(),
         debugShowCheckedModeBanner: false,
         // This trailing comma makes auto-formatting nicer for build methods.
         routes: {
