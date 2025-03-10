@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 class CustomTextFormField extends StatefulWidget {
   final TextEditingController myController;
   final String hintText;
+  final String? Function(String?)? validator;
 
   const CustomTextFormField({
     super.key,
     required this.myController,
     required this.hintText,
+    required this.validator,
   });
 
   @override
@@ -18,6 +20,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      validator: widget.validator,
       controller: widget.myController, // Utilisation correcte
       keyboardType: TextInputType.emailAddress,
       decoration: InputDecoration(
