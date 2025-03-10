@@ -8,24 +8,30 @@ class Homepage extends StatelessWidget {
     final String username = args?["username"] ?? "Guest";
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Homepage"),
-        actions: [
-          MaterialButton(
-              onPressed: () async {
-                await FirebaseAuth.instance.signOut();
-                Navigator.of(context)
-                    .pushNamedAndRemoveUntil("login", (route) => false);
-              },
-              child: Text("sing out")),
-        ],
-      ),
-      body: Center(
-        child: Text(
-          "Welcome, $username!",
-          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+        appBar: AppBar(
+          title: Text("Homepage"),
+          actions: [
+            MaterialButton(
+                onPressed: () async {
+                  await FirebaseAuth.instance.signOut();
+                  Navigator.of(context)
+                      .pushNamedAndRemoveUntil("login", (route) => false);
+                },
+                child: Icon(Icons.exit_to_app)),
+          ],
         ),
-      ),
-    );
+        body: ListView(
+          children: [
+            FirebaseAuth.instance.currentUser!.emailVerified
+                ? Text("Email verified")
+                : MaterialButton(
+                    onPressed: () {
+                      FirebaseAuth.instance.currentUser!
+                          .sendEmailVerification();
+                    },
+                    child: Text("please verifie your email"),
+                  )
+          ],
+        ));
   }
 }
