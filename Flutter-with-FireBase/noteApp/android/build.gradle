@@ -1,6 +1,11 @@
 buildscript {
+    repositories {  // ✅ Add this block to define repositories for dependencies
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+    }
     dependencies {
-        classpath 'com.android.tools.build:gradle:8.4.0' // Mise à jour ici
+        classpath 'com.android.tools.build:gradle:8.4.0' // ✅ Ensure repository is accessible
     }
 }
 
